@@ -12,7 +12,7 @@
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
-  "workspaceFolder": "/app",
+  "workspaceFolder": "/workspace",
 
   // Uncomment the next line to have VS Code connect as an existing non-root user in the container. See
   // https://aka.ms/vscode-remote/containers/non-root for details on adding a non-root user if none exist.
