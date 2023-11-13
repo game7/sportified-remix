@@ -7,22 +7,33 @@
     "build": "remix build",
     "dev": "PORT=4000 remix dev --manual",
     "start": "remix-serve ./build/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "npx tsx db/migrate.ts",
+    "db:reset": "npx tsx db/reset.ts",
+    "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.2.0",
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.0",
     "isbot": "^3.6.8",
+    "lodash": "^4.17.21",
+    "postgres": "^3.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",
     "@remix-run/eslint-config": "^2.2.0",
+    "@types/lodash": "^4.14.201",
+    "@types/pg": "^8.10.9",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "drizzle-kit": "^0.20.2",
     "eslint": "^8.38.0",
     "typescript": "^5.1.6"
   },
