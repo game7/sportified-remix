@@ -11,9 +11,9 @@ export default defineConfig({
       // serverBuildPath: "build/index.js",
     }),
   ],
-  server: {
-    watch: {
-      usePolling: true,
-    },
-  },
+  // server: {
+  //   watch: {
+  //     usePolling: true,
+  //   },
+  // },
 });
