@@ -1,3 +1,10 @@
+// Import styles of packages that you've installed.
+// All packages except `@mantine/hooks` require styles imports
+import "@mantine/core/styles.layer.css";
+import "mantine-datatable/styles.layer.css";
+import "./root.css";
+
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import {
@@ -21,12 +28,15 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <ColorSchemeScript defaultColorScheme="auto" />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <LiveReload />
-        <Scripts />
+        <MantineProvider defaultColorScheme="auto">
+          <Outlet />
+          <ScrollRestoration />
+          <LiveReload />
+          <Scripts />
+        </MantineProvider>
       </body>
     </html>
   );

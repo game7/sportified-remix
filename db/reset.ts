@@ -1,17 +1,27 @@
-import postgres from "postgres";
-import config from "../drizzle.config";
+import pg from "pg";
+import { config } from "~/database.server";
 
 (async function main() {
-  let client = postgres("", { ...config.dbCredentials, max: 1, database: "" });
+  let client = new pg.Client({ ...config, database: "" });
 
-  const { database } = config.dbCredentials;
-  let results =
-    await client`SELECT datname FROM pg_catalog.pg_database WHERE datname = ${database};`;
+  const { database } = config;
 
-  if (results.length === 1) {
-    await client.unsafe(`DROP DATABASE "${database}"`);
-    await client.unsafe(`CREATE DATABASE "${database}"`);
+  await client.connect();
+
+  let results = await client.query(
+    "SELECT datname FROM pg_catalog.pg_database WHERE datname = $1;",
+    ["sportified_development"]
+  );
+
+  if (results.rowCount === 1) {
+    console.log("DROPPING DATABASE");
+    console.log(await client.query(`DROP DATABASE "${database}"`));
+    console.log(await client.query(`CREATE DATABASE "${database}"`));
+  } else {
+    console.log("OOPS! DATABASE DOES NOT EXIST");
   }
+
+  await client.end();
 
   process.exit(0);
 })();
